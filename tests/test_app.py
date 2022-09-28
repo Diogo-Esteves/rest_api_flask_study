@@ -2,6 +2,7 @@ from unittest import TestCase
 
 from app import get_store
 
+
 class TestApi(TestCase):
     def setUp(self) -> None:
         self.store = get_store()
