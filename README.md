@@ -22,3 +22,13 @@ docker container run -p 5000:5000 -w /app -v "$(pwd):/app" rest-api-flask
 ```sh
 python -m unittest
 ```
+
+## Flask commands with Alembic
+
+Generating migration files into the db.
+
+```sh
+flask db init
+flask db migrate
+flask db upgrade
+```

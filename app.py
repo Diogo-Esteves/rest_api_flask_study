@@ -3,6 +3,7 @@ import os
 from flask import Flask, jsonify
 from flask_smorest import Api
 from flask_jwt_extended import JWTManager
+from flask_migrate import Migrate
 
 from db import db
 
@@ -29,8 +30,7 @@ def create_app(db_url=None):
         "DATABASE_URL", "sqlite:///data.db"
     )
     db.init_app(app)
-    with app.app_context():
-        db.create_all()
+    migrate = Migrate(app, db)
 
     api = Api(app)
 
