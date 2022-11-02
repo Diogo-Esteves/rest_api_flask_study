@@ -4,10 +4,11 @@ from flask import Flask, jsonify
 from flask_smorest import Api
 from flask_jwt_extended import JWTManager
 from flask_migrate import Migrate
+from dotenv import load_dotenv
 
 from db import db
-
 from blocklist import BLOCKLIST
+
 from resources.item import blp as ItemBlueprint
 from resources.store import blp as StoreBlueprint
 from resources.tag import blp as TagBlueprint
@@ -16,6 +17,7 @@ from resources.user import blp as UserBluePrint
 
 def create_app(db_url=None):
     app = Flask(__name__)
+    load_dotenv()
 
     app.config["PROPAGATE_EXCEPTIONS"] = True
     app.config["API_TITLE"] = "REST API with Flask"
@@ -29,6 +31,7 @@ def create_app(db_url=None):
     app.config["SQLALCHEMY_DATABASE_URI"] = db_url or os.getenv(
         "DATABASE_URL", "sqlite:///data.db"
     )
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     db.init_app(app)
     migrate = Migrate(app, db)
 
