@@ -32,3 +32,10 @@ flask db init
 flask db migrate
 flask db upgrade
 ```
+
+## TODO
+
+create dockerfiles and a docker compose file for:
+
+* postgresql
+* redis
